@@ -10,7 +10,7 @@ from configuracion import cadena_base_datos
 # datos
 # para el ejemplo se usa la base de datos
 # sqlite
-engine = create_engine(cadena_base_datos)
+engine = create_engine(cadena_base_datos, echo=True)
 
 Base = declarative_base()
 
@@ -31,7 +31,8 @@ class Club(Base):
 
     
     def __repr__(self):
-        return "Club: nombre=%s deporte=%s fundación=%d" % (
+        return "Club(%d): nombre=%s deporte=%s fundación=%d" % (
+                          self.id,
                           self.nombre, 
                           self.deporte, 
                           self.fundacion)

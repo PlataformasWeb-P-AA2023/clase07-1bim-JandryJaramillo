@@ -12,7 +12,7 @@ from configuracion import cadena_base_datos
 # datos
 # para el ejemplo se usa la base de datos
 # sqlite
-engine = create_engine(cadena_base_datos)
+engine = create_engine(cadena_base_datos, echo=True)
 
 
 Session = sessionmaker(bind=engine)
@@ -48,6 +48,7 @@ for e in clubs:
 registros = session.query(Club, Jugador).join(Jugador).\
         filter(Jugador.nombre.like("%Da%")).all()
  
+print("---------")
 print("Consulta 2 ")
 """
 
@@ -66,13 +67,6 @@ for registro in registros:
     # posición 0 el club
     # posición 1 el jugador 
     # que cumplen con la condición
-    print(registro[0]) # El nombre del club
-    print(registro[1]) # El número del dorsal del jugador
-
-
-
-
-
-
-
-
+    print(registro[0].nombre) # El club
+    print(registro[1].nombre) # El jugador
+    print("---------")
